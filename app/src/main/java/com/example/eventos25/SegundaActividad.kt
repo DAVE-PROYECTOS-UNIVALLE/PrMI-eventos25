@@ -1,5 +1,6 @@
 package com.example.eventos25
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -31,7 +32,21 @@ class SegundaActividad : AppCompatActivity() {
         btn2.setOnClickListener {
             Toast.makeText(this,
             "solo click, necesitas presionar mas",
-            Toast.LENGTH_LONG).show() }
+            Toast.LENGTH_LONG).show()
+        }
+        tv2.setOnLongClickListener{
+            val intent = Intent (this,
+                TerceraActividad::class.java)
+            startActivity(intent)
+            true
+        }
+        img2.setOnLongClickListener {
+            val intent = Intent (this,
+                TerceraActividad::class.java)
+            startActivity(intent)
+            true
+        }
+
 
     }
 }
