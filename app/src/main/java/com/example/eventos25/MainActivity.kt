@@ -1,5 +1,6 @@
 package com.example.eventos25
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -26,6 +27,9 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this,
                 "Haz hecho click en el boton",
                 Toast.LENGTH_LONG).show()
+            val intent = Intent(this,
+                SegundaActividad::class.java)
+            startActivity(intent)
         }
         tv1.setOnClickListener {
             Toast.makeText(this,
