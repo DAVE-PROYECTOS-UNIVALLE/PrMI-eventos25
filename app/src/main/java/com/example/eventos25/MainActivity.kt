@@ -10,6 +10,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
     private lateinit var btn1 : Button
@@ -24,9 +25,8 @@ class MainActivity : AppCompatActivity() {
         img1 = findViewById(R.id.img3)
 
         btn1.setOnClickListener {
-            Toast.makeText(this,
-                "Haz hecho click en el boton",
-                Toast.LENGTH_LONG).show()
+            Snackbar.make(findViewById(R.id.main),
+                "Primer snack bar", Snackbar.LENGTH_LONG).show()
             val intent = Intent(this,
                 SegundaActividad::class.java)
             startActivity(intent)
