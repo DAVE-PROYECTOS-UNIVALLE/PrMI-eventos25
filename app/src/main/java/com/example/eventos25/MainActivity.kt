@@ -26,7 +26,11 @@ class MainActivity : AppCompatActivity() {
 
         btn1.setOnClickListener {
             Snackbar.make(findViewById(R.id.main),
-                "Primer snack bar", Snackbar.LENGTH_LONG).show()
+                "Primer snack bar", Snackbar.LENGTH_LONG)
+                .setAction("aceptar"){
+
+                }.show()
+
             val intent = Intent(this,
                 SegundaActividad::class.java)
             startActivity(intent)
