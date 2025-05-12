@@ -2,6 +2,7 @@ package com.example.eventos25
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.ContextMenu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
@@ -53,7 +54,39 @@ class MainActivity : AppCompatActivity() {
         btnPopUp.setOnClickListener { view ->
             mostrarPopUp(view)
         }
+        registerForContextMenu(tv1)
     }
+
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        menuInflater.inflate(R.menu.context, menu)
+        menu?.setHeaderTitle("Opciones")
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId){
+            R.id.ctit1 -> {
+                Toast.makeText(this,
+                    "elemento 1",
+                    Toast.LENGTH_SHORT).show()
+                true
+
+            }
+            R.id.ctit2 ->{
+                Toast.makeText(this,
+                    "elemento 2",
+                    Toast.LENGTH_SHORT).show()
+                true
+            }
+            else -> false
+
+        }
+    }
+
     private fun mostrarPopUp(view : View){
         val popUp = PopupMenu(this, view)
         popUp.menuInflater.inflate(R.menu.popup, popUp.menu)
