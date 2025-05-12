@@ -2,8 +2,11 @@ package com.example.eventos25
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -12,10 +15,12 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.snackbar.Snackbar
 
+
 class MainActivity : AppCompatActivity() {
     private lateinit var btn1 : Button
     private lateinit var tv1 : TextView
     private lateinit var img1 : ImageView
+    private lateinit var btnPopUp : Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -23,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         btn1 = findViewById(R.id.btn1)
         tv1 = findViewById(R.id.tv1)
         img1 = findViewById(R.id.img3)
-
+        btnPopUp = findViewById(R.id.btnPopUp)
         btn1.setOnClickListener {
             Snackbar.make(findViewById(R.id.main),
                 "Primer snack bar", Snackbar.LENGTH_LONG)
@@ -45,5 +50,28 @@ class MainActivity : AppCompatActivity() {
                 "Haz hecho click en la imagen",
                 Toast.LENGTH_LONG).show()
         }
+        btnPopUp.setOnClickListener { view ->
+            mostrarPopUp(view)
+        }
+    }
+    private fun mostrarPopUp(view : View){
+        val popUp = PopupMenu(this, view)
+        popUp.menuInflater.inflate(R.menu.popup, popUp.menu)
+        popUp.setOnMenuItemClickListener { menuItem : MenuItem ->
+            when (menuItem.itemId){
+                R.id.item1 -> {
+                    Toast.makeText(this, "seleccionaste item1",
+                        Toast.LENGTH_LONG).show()
+                    true
+                }
+                R.id.item2 -> {
+                    Toast.makeText(this, "seleccionaste item2",
+                        Toast.LENGTH_LONG).show()
+                    true
+                }
+                else -> false
+            }
+        }
+        popUp.show()
     }
 }
