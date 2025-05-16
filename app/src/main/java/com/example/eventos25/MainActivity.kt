@@ -22,6 +22,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tv1 : TextView
     private lateinit var img1 : ImageView
     private lateinit var btnPopUp : Button
+    private lateinit var btn5 : Button
+    private lateinit var btn6 : Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -30,6 +32,8 @@ class MainActivity : AppCompatActivity() {
         tv1 = findViewById(R.id.tv1)
         img1 = findViewById(R.id.img3)
         btnPopUp = findViewById(R.id.btnPopUp)
+        btn5 = findViewById(R.id.btn5)
+        btn6 = findViewById(R.id.btn6)
         btn1.setOnClickListener {
             Snackbar.make(findViewById(R.id.main),
                 "Primer snack bar", Snackbar.LENGTH_LONG)
@@ -55,6 +59,13 @@ class MainActivity : AppCompatActivity() {
             mostrarPopUp(view)
         }
         registerForContextMenu(tv1)
+
+        btn5.setOnClickListener {
+            enviarWhatsapp()
+        }
+        btn6.setOnClickListener {
+            recibirImagenes()
+        }
     }
 
     override fun onCreateContextMenu(
@@ -106,5 +117,26 @@ class MainActivity : AppCompatActivity() {
             }
         }
         popUp.show()
+    }
+    private fun enviarWhatsapp(){
+        val mensaje = "hola que tal este es un mensaje desde kotlin"
+        // definir intent
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "text/plain"
+        intent.putExtra(Intent.EXTRA_TEXT, mensaje)
+
+        if (intent.resolveActivity(packageManager)!= null){
+            startActivity(intent)
+        }
+        else{
+            Toast.makeText(this,
+                "No se encontraron aplicaciones",
+                Toast.LENGTH_SHORT).show()
+        }
+
+
+    }
+    private fun recibirImagenes(){
+
     }
 }
