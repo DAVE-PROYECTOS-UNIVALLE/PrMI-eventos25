@@ -1,7 +1,9 @@
 package com.example.eventos25
 
+import android.app.ComponentCaller
 import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.ContextMenu
 import android.view.MenuItem
 import android.view.View
@@ -24,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnPopUp : Button
     private lateinit var btn5 : Button
     private lateinit var btn6 : Button
+    private val CODIGO_GALERIA = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -137,6 +140,26 @@ class MainActivity : AppCompatActivity() {
 
     }
     private fun recibirImagenes(){
+        val intent = Intent(Intent.ACTION_PICK,
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent,
+            CODIGO_GALERIA)
 
+    }
+
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?,
+        caller: ComponentCaller
+    ) {
+        super.onActivityResult(requestCode, resultCode, data, caller)
+        if(requestCode == CODIGO_GALERIA && resultCode == RESULT_OK && data != null)
+        {
+            val mensaje ="hola"
+            val imagenURI = data.data
+
+            img1.setImageURI(imagenURI)
+        }
     }
 }
