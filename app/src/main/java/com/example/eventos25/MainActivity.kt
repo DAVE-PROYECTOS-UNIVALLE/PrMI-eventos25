@@ -150,10 +150,8 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(
         requestCode: Int,
         resultCode: Int,
-        data: Intent?,
-        caller: ComponentCaller
-    ) {
-        super.onActivityResult(requestCode, resultCode, data, caller)
+        data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == CODIGO_GALERIA && resultCode == RESULT_OK && data != null)
         {
             val mensaje ="hola"
