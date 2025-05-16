@@ -159,6 +159,7 @@ class MainActivity : AppCompatActivity() {
             val mensaje ="hola"
             val imagenURI = data.data
             Toast.makeText(this , "recibido", Toast.LENGTH_SHORT).show()
+            img1.setImageDrawable(null)
             img1.setImageURI(imagenURI)
         }
     }
